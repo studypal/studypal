@@ -1,8 +1,4 @@
 import React, { Component } from "react";
-import Checkbox from "./Checkbox.jsx";
-// try to import instead of require
-// var Checkbox = require('rc-checkbox');
-// import CheckboxesGroup from "Checkbox.jsx";
 
 class Register extends Component {
   constructor(props) {
@@ -11,29 +7,33 @@ class Register extends Component {
   //{" "}
   //<input type="text" placeholder="Interests" />
   render() {
+    let checkboxes = [];
+    const interest = ["Math", "Art", "Science"];
+    for (let i = 0; i < interest.length; i++) {
+      checkboxes.push(
+        <span className="checkbox">
+          <input
+            className="checkbox"
+            type="checkbox"
+            value={interest[i]}
+            id={interest[i]}
+          />
+          <label>{interest[i]}</label>
+        </span>
+      );
+    }
+
     return (
-      <div>
-        <p>Register Form</p>
-        <input type="text" placeholder="Username" />
-        <br />
-        <span>
-          <input type="text" placeholder="First Name" />
-        </span>
-        <br />
-        <span>
-          <input type="text" placeholder="Last Name" />
-        </span>
-        <br />
-
-        <input type="email" placeholder="Email" />
-        <br />
-        <input type="text" placeholder="School" />
-        <br />
-        <Checkbox />
-
-        <br />
-        <button>Submit</button>
-      </div>
+      <form action="" className="login-register-input">
+        <h1>Register</h1>
+        <input className="text" type="text" placeholder="Username" />
+        <input className="text" type="text" placeholder="First Name" />
+        <input className="text" type="text" placeholder="Last Name" />
+        <input className="text" type="email" placeholder="Email" />
+        <input className="text" type="text" placeholder="School" />
+        {checkboxes}
+        <input type="submit" />
+      </form>
     );
   }
 }
