@@ -5,6 +5,9 @@ import { Switch, Route } from 'react-router-dom';
 import ReactDOM from "react-dom";
 import Login from "./components/Login.jsx";
 import Register from "./components/Register.jsx";
+
+
+// import Checkbox from
 // import styles
 import "./stylesheets/styles.css";
 
