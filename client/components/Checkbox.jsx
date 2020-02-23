@@ -8,7 +8,7 @@ class Checkbox extends Component {
   render() {
     return (
       <div>
-        <input className="checkbox" type="checkbox" value="Math" />
+        <span></span>
         {/* <span className="interest">Math</span> */}
       </div>
     );
