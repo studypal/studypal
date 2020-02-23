@@ -17,10 +17,10 @@ const App = props => {
           exact path="/"
           component={Login}
         />
-        {/* <Route
+        <Route
           exact path="/register"
           component={Register}
-        /> */}
+        />
       </Switch>
     </main>
   </div>
