@@ -5,6 +5,7 @@ import { Switch, Route } from 'react-router-dom';
 import ReactDOM from 'react-dom';
 import Login from './components/Login.jsx';
 import Register from './components/Register.jsx';
+import Chat from './components/Chat.jsx';
 
 // import Checkbox from
 // import styles
@@ -17,6 +18,7 @@ const App = props => {
         <Switch>
           <Route exact path="/" component={Login} />
           <Route exact path="/register" component={Register} />
+          <Route exact path="/msg" component={Chat} />
         </Switch>
       </main>
     </div>
