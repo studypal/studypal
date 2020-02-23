@@ -21,3 +21,21 @@ app.get('/', (req, res) =>
 app.use('/api', apiRouter);
 app.use('/users', usersRouter);
 app.use('/msg', msgRouter);
+
+// catch-all route handler for any requests to an unknown route
+app.use((req, res) => {
+  res.status(404).send(404);
+});
+
+//express global error handler
+app.use((err, req, res, next) => {
+  let defaultErr = {
+    log: 'Express error handler caught unknown middleware error',
+    status: 400,
+    message: { err: 'An error occured' }
+  };
+  const errorObj = Object.assign({}, defaultErr, err);
+  res.status(errorObj.status).send(errorObj.message);
+});
+
+module.exports = app;

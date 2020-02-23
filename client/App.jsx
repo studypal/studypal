@@ -1,24 +1,18 @@
-import React from 'react';
+import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
-import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import Login from './components/Login.jsx';
+import Register from './components/Register.jsx';
+// import Checkbox from
+import './stylesheets/styles.css';
 
-import Error from './components/Error.jsx';
-
-class App extends React.Component {
+class App extends Component {
   render() {
     return (
-      <BrowserRouter>
-        <div>
-          <Switch>
-            {/*  need to put login component so that on / it would go to login*/}
-            {/* <Route path="/" component={} exact />
-      <Route path="/users" component={} />
-      <Route path="/msg" component={} />
-      <Route path="/register" component={} />*/}
-            <Route component={Error} />
-          </Switch>
-        </div>
-      </BrowserRouter>
+      <div>
+        {/* <Login /> */}
+
+        {/* <Register /> */}
+      </div>
     );
   }
 }
