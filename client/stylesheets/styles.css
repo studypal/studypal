@@ -1,7 +1,7 @@
 .login-register-input {
   height: 500px;
   width: 500px;
-  margin: 200px auto;
+  margin: 150px auto;
 }
 .welcome {
   margin-right: 20px;
@@ -15,7 +15,6 @@
 
 .text {
   display: flex;
-  /* display: block; */
   width: 250px;
   height: 40px;
   margin-bottom: 5px;
@@ -31,3 +30,9 @@ span {
 .checkbox {
   margin-right: 10px;
 }
+
+/* .register-input .text {
+  height: 40px;
+  width: 450px;
+  margin: 150px auto;
+} */

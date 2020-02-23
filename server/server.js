@@ -12,15 +12,16 @@ const usersRouter = require('../server/routes/users');
 const msgRouter = require('../server/routes/msgs');
 //TODO
 
+
+//define route handlers
+app.use('/api', apiRouter);
+app.use('/profile', usersRouter);
+app.use('/msg', msgRouter);
+
 // route handler to respond with main app
 app.get('/', (req, res) =>
   res.status(200).sendFile(path.resolve(__dirname, '../client/index.html'))
 );
-
-//define route handlers
-app.use('/api', apiRouter);
-app.use('/users', usersRouter);
-app.use('/msg', msgRouter);
 
 // catch-all route handler for any requests to an unknown route
 app.use((req, res) => {
@@ -37,5 +38,9 @@ app.use((err, req, res, next) => {
   const errorObj = Object.assign({}, defaultErr, err);
   res.status(errorObj.status).send(errorObj.message);
 });
+
+app.listen(PORT, () => {
+  console.log(`Server listening on port ${PORT}`);
+})
 
 module.exports = app;
