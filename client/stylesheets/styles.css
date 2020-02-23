@@ -1,18 +1,22 @@
-.login {
+.login-register-input {
   height: 500px;
   width: 500px;
-  margin: 200px auto;
+  margin: 150px auto;
+}
+.welcome {
+  margin-right: 20px;
 }
 
-button {
-  width: 130px;
+.button {
+  width: 250px;
   height: 30px;
   margin-bottom: 10px;
 }
 
-input {
+.text {
+  display: flex;
   width: 250px;
-  height: 25px;
+  height: 40px;
   margin-bottom: 5px;
 }
 a {
@@ -23,11 +27,8 @@ span {
   padding: 10px 5px 0 0;
 }
 
-.checkBox {
-  margin-right: 0;
-}
-.interest {
-  margin: 0;
+.checkbox {
+  margin-right: 10px;
 }
 
 .matchBox {
@@ -61,3 +62,9 @@ span {
   height: 350px;
   background-color: lightgray;
 }
+
+/* .register-input .text {
+  height: 40px;
+  width: 450px;
+  margin: 150px auto;
+} */
