@@ -1,8 +1,11 @@
 import React, { Component } from 'react';
+import { Switch, Route } from 'react-router-dom';
+
+//import relevant files
 import ReactDOM from 'react-dom';
 import Login from './components/Login.jsx';
 import Register from './components/Register.jsx';
-// import Checkbox from
+// import styles
 import './stylesheets/styles.css';
 
 const App = props => {
