@@ -5,16 +5,20 @@ import Register from './components/Register.jsx';
 // import Checkbox from
 import './stylesheets/styles.css';
 
-class App extends Component {
-  render() {
-    return (
-      <div>
-        {/* <Login /> */}
-
-        {/* <Register /> */}
-      </div>
-    );
-  }
-}
+const App = props => {
+  return (
+    <div className="router">
+      <main>
+        <Switch>
+          <Route exact path="/" component={Login} />
+          {/* <Route
+          exact path="/register"
+          component={Register}
+        /> */}
+        </Switch>
+      </main>
+    </div>
+  );
+};
 
 export default App;
