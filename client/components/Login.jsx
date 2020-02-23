@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { Link } from "react-router-dom";
 
 function Login(props) {
   return (
@@ -13,7 +14,7 @@ function Login(props) {
       <a href="">Forgot password?</a>
       <br />
       <span>New to StudyPal?</span>
-      <a href="">Join now</a>
+      <Link to="/register">Join now</Link>
     </div>
   );
 }
