@@ -57,16 +57,48 @@ usersController.matchUsers = async (req, res, next) => {
   
   usersController.addUser = async (req, res, next) => {
     try {
-      console.log('req.body in userContoller.addUser', req.body)
+      const {
+        firstname,
+        lastname,
+        username,
+        password,
+        email,
+        school,
+        interests
+      } = req.body;
+      const q =
+        "INSERT INTO users(first_name, last_name, email, username, password) VALUES ($1, $2, $3, $4, $5) RETURNING _id";
+      const values = [firstname, lastname, email, username, password];
+      
+      //insert new user into table
+      const getIdQuery = await db.query(q, values);
+      const newUserId = getIdQuery.rows[0]._id;
 
+      console.log('new user id', newUserId);
+
+      const q2 = "INSERT INTO schools(name, location_x, location_y, user_id) VALUES($1, $2, $3, $4)";
+      const val2 = [school, '122.45', '134.56', newUserId];
+
+      const queryTwo = await db.query(q2, val2);
+
+      console.log('interests array', interests);
+
+      //loop through interests array to insert all the interests
+      for (let i = 0; i < interests.length; i++) {
+
+        let q3 = "INSERT INTO interests(interest_name, user_id) VALUES($1, $2)";
+        let val3 = [interests[i], newUserId];
+        const queryThree = await db.query(q3, val3);
+      }
       return next();
-    }
-    catch (err) {
+    } catch (err) {
       return next({
-        log: `usersController.matchUsers: ERROR: ${err}`,
-        message: { err: 'usersController.matchUsers: ERROR: Check server logs for details' },
+        log: `usersController.addUser: ERROR: ${err}`,
+        message: {
+          err: "usersController.addUser: ERROR: Check server adds new user"
+        }
       });
-    };
+    }
   };
 
   module.exports = usersController;
