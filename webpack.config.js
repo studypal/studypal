@@ -41,11 +41,14 @@ module.exports = {
         target: 'http://localhost:3000',
         secure: false
       },
-      '/msg/*': {
+      '/users': {
         target: 'http://localhost:3000',
         secure: false
-      },
+      }
     },
+
+      '/msg/*': {
+
     historyApiFallback: true
   }
 };
