@@ -33,10 +33,18 @@ module.exports = {
     publicPath: '/',
     port: 8080,
     proxy: {
-      '/api': {
+      '/api/*': {
         target: 'http://localhost:3000',
         secure: false
-      }
+      },
+      '/users/*': {
+        target: 'http://localhost:3000',
+        secure: false
+      },
+      '/msg/*': {
+        target: 'http://localhost:3000',
+        secure: false
+      },
     },
     historyApiFallback: true
   }

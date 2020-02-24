@@ -8,8 +8,8 @@ usersRouter.get('/profile', usersController.matchUsers, (req, res, next) => {
     return res.status(200).json(res.locals.match);
 })
 
-usersRouter.post('/adduser', usersController.addUsers, (req, res, next) => {
-    console.log('usersRouter.add');
+usersRouter.post('/addUser', usersController.addUsers, (req, res, next) => {
+    console.log('usersRouter.add called');
     return res.status(200).json({});
 })
 

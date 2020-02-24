@@ -57,13 +57,16 @@ const Register2 = props => {
       const body = {
         firstname, lastname, username, password, email, school, interests
       };
+      console.log(body);
 
       fetch('/users/addUser', {
         method: 'POST',
         headers: { "Content-Type": "Application/JSON" },
         body: JSON.stringify(body)
       })
-      .then(resp => resp.json())
+      .then((resp) => {
+        console.log('resp', resp);
+      })
       .catch(err => console.log('Register fetch /users/addUser: ERROR: ', err))
 
     }
