@@ -1,8 +1,6 @@
 import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
-
 // custom hook for handling input boxes
-
 const useInput = init => {
   const [value, setValue] = useState(init);
   const onChange = e => {
@@ -11,7 +9,6 @@ const useInput = init => {
   return [value, onChange];
 };
 //REGISTER: using React Hook
-
 const Register = props => {
   //variables
   const history = useHistory();
@@ -56,7 +53,6 @@ const Register = props => {
         }
       }
       props.onRegisterSubmit(username);
-
       const body = {
         firstname,
         lastname,
@@ -66,7 +62,6 @@ const Register = props => {
         school,
         interests
       };
-
       // fetch('/users/addUser', {
       //   method: 'POST',
       //   headers: { 'Content-Type': 'Application/JSON' },
@@ -74,11 +69,9 @@ const Register = props => {
       // })
       //   .then(resp => resp.json())
       //   .catch(err => console.log('Register fetch /users/addUser: ERROR: ', err));
-
       history.push('/profile');
     }
   };
-
   //html component
   return (
     <div className="login-register-input">
@@ -151,5 +144,4 @@ const Register = props => {
     </div>
   );
 };
-
 export default Register;
