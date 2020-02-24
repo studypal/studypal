@@ -37,8 +37,8 @@ class Login extends Component {
       .then(resp => resp.json())
       .then((result) => { //user validation result
         if(result) { //successful
-          // this.props.history.push('/profile'); //redirect 
           this.props.onLoginSubmit(username);
+          // this.props.history.push('/profile'); //redirect 
         }
         else { //unsuccessful
           this.setState({...this.state, input: 'invalid'});
