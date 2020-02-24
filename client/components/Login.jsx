@@ -23,8 +23,6 @@ class Login extends Component {
   //invoked upon login button click
   userLogin() {
     const { username, password } = this.state;
-    console.log('username', username);
-    console.log('pw', password);
 
     if(username == '' || password == '')
       this.setState({...this.state, input: 'empty'});
@@ -40,6 +38,7 @@ class Login extends Component {
       .then(resp => resp.json())
       .then((result) => { //user validation result
         if(result) { //successful
+          this.props.onLoginSubmit(username); //send username info back + update state in App.jsx
           this.setState({...this.state, verified: true}); //update state
         }
         else { //unsuccessful
@@ -65,7 +64,7 @@ class Login extends Component {
 
     //redirect to /profile page if verified
     if(this.state.verified) {
-      return <Redirect to='/profile'/>
+      return <Redirect to={`/profile/${this.state.username}`}/>
     }
     //else
     return (
