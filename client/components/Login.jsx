@@ -22,8 +22,7 @@ class Login extends Component {
   //invoked upon login button click
   userLogin() {
     const { username, password } = this.state;
-    console.log('username', username);
-    console.log('pw', password);
+
 
     if(username == '' || password == '')
       this.setState({...this.state, input: 'empty'});
@@ -48,8 +47,6 @@ class Login extends Component {
       .catch(err => console.log('Login fetch /users/validateUser: ERROR: ', err));
     }
     
-  }
-  
   render() {
     const inputState = this.state.input;
 
@@ -91,22 +88,5 @@ class Login extends Component {
   }
 }
 
-// function Login(props) {
-//   return (
-//     <div className="login-register-input">
-//       <h1>StudyPal</h1>
-//       <p className="welcome">Welcome back!</p>
-//       <form action="">
-//         <input className="text" type="text" placeholder="Username" />
-//         <input className="text" type="password" placeholder="Password" />
-//         <input className="button" type="submit" value="Submit" />
-//       </form>
-//       <a href="">Forgot password?</a>
-//       <br />
-//       <span>New to StudyPal?</span>
-//       <Link to="/register">Join now</Link>
-//     </div>
-//   );
-// }
 
 export default Login;
