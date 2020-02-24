@@ -39,7 +39,7 @@ const msgRouter = require('../server/routes/msgs');
 
 //define route handlers
 app.use('/api', apiRouter);
-app.use('/profile', usersRouter);
+app.use('/users', usersRouter);
 app.use('/msg', msgRouter);
 
 // route handler to respond with main app
@@ -49,7 +49,7 @@ app.get('/', (req, res) =>
 
 // catch-all route handler for any requests to an unknown route
 app.use((req, res) => {
-  res.status(404).send(404);
+  res.sendStatus(404);
 });
 
 //express global error handler
