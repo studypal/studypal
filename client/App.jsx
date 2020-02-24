@@ -19,27 +19,44 @@ class App extends Component {
       username: ''
     };
     this.onRegisterSubmit = this.onRegisterSubmit.bind(this);
+    this.onLoginSubmit = this.onLoginSubmit.bind(this);
   }
+  //get username information from /register and /login upon successful submit
   onRegisterSubmit(usrName) {
-    console.log('hehehhehhe', usrName);
     this.setState({
       username: usrName
     });
-    console.log('here', this.state);
+    console.log('state onregistersubmit in app.jsx', this.state);
   }
+  onLoginSubmit(usrName) {
+    this.setState({
+      username: usrName
+    });
+    console.log('state onloginsubmit in app.jsx', this.state);
+  }
+
   render() {
     return (
       <div className="router">
         <main>
           <Switch>
-            <Route exact path="/" component={Login} />
-            <Route path="/profile" render={() => <Profile username={this.state.username} />} />
+            <Route 
+              exact path="/" 
+              // component={Login} 
+              render={() => <Login onLoginSubmit={this.onLoginSubmit} />} 
+            />
+            <Route 
+              path="/profile" 
+              render={() => <Profile username={this.state.username} />} 
+            />
             <Route
-              exact
-              path="/register"
+              exact path="/register"
               render={() => <Register onRegisterSubmit={this.onRegisterSubmit} />}
             />
-            <Route path="/chat" component={Chat} />
+            <Route 
+              path="/chat" 
+              component={Chat} 
+            />
           </Switch>
         </main>
       </div>

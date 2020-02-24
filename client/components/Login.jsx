@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Link } from "react-router-dom";
+import { Link, Redirect } from "react-router-dom";
 
 class Login extends Component {
   constructor(props) {
@@ -8,6 +8,7 @@ class Login extends Component {
       username: '',
       password: '',
       input: 'valid', //used to display error messages below input box
+      verified: false
     };
     this.handleChange = this.handleChange.bind(this);
     this.userLogin = this.userLogin.bind(this);
@@ -23,7 +24,6 @@ class Login extends Component {
   userLogin() {
     const { username, password } = this.state;
 
-
     if(username == '' || password == '')
       this.setState({...this.state, input: 'empty'});
     else {
@@ -38,7 +38,8 @@ class Login extends Component {
       .then(resp => resp.json())
       .then((result) => { //user validation result
         if(result) { //successful
-          this.props.history.push('/profile'); //redirect 
+          this.props.onLoginSubmit(username); //send username info back + update state in App.jsx
+          this.setState({...this.state, verified: true}); //update state
         }
         else { //unsuccessful
           this.setState({...this.state, input: 'invalid'});
@@ -46,8 +47,9 @@ class Login extends Component {
       })
       .catch(err => console.log('Login fetch /users/validateUser: ERROR: ', err));
     }
-  }
     
+  }
+  
   render() {
     const inputState = this.state.input;
 
@@ -60,6 +62,11 @@ class Login extends Component {
         return <div className="login-invalid-msg">Please enter username and password</div>;
     }
 
+    //redirect to /profile page if verified
+    if(this.state.verified) {
+      return <Redirect to={`/profile/${this.state.username}`}/>
+    }
+    //else
     return (
       <div className="login-register-input">
         <h1>StudyPal</h1>
@@ -85,9 +92,26 @@ class Login extends Component {
         <span>New to StudyPal?</span>
         <Link to="/register">Join now</Link>
       </div>
-    )
-  };
+    );
+  }
 }
 
+// function Login(props) {
+//   return (
+//     <div className="login-register-input">
+//       <h1>StudyPal</h1>
+//       <p className="welcome">Welcome back!</p>
+//       <form action="">
+//         <input className="text" type="text" placeholder="Username" />
+//         <input className="text" type="password" placeholder="Password" />
+//         <input className="button" type="submit" value="Submit" />
+//       </form>
+//       <a href="">Forgot password?</a>
+//       <br />
+//       <span>New to StudyPal?</span>
+//       <Link to="/register">Join now</Link>
+//     </div>
+//   );
+// }
 
 export default Login;
