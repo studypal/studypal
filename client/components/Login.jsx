@@ -55,9 +55,11 @@ class Login extends Component {
             <Link to="/register">Join now</Link>
           </div>
         </div>
+
       </div>
     );
   }
 }
+
 
 export default Login;
