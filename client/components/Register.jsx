@@ -57,7 +57,6 @@ const Register2 = props => {
       const body = {
         firstname, lastname, username, password, email, school, interests
       };
-      console.log(body);
 
       fetch('/users/addUser', {
         method: 'POST',
