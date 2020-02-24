@@ -23,7 +23,6 @@ class Login extends Component {
   userLogin() {
     const { username, password } = this.state;
 
-
     if(username == '' || password == '')
       this.setState({...this.state, input: 'empty'});
     else {
@@ -38,7 +37,8 @@ class Login extends Component {
       .then(resp => resp.json())
       .then((result) => { //user validation result
         if(result) { //successful
-          this.props.history.push('/profile'); //redirect 
+          // this.props.history.push('/profile'); //redirect 
+          this.props.onLoginSubmit(username);
         }
         else { //unsuccessful
           this.setState({...this.state, input: 'invalid'});
