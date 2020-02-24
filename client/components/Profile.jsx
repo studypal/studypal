@@ -8,25 +8,30 @@ import ProfileMessages from './Profile.Messages.jsx';
 const Profile = props => {
   const [chats, setChats] = useState([]);
   const [matches, setMatches] = useState([]);
+
   useEffect(() => {
-    console.log('in profile', props.username);
+    console.log('in profile', props);
     // loadChats();
-    // loadMatches();
+    loadMatches(); //find matched users
   }, []);
+
   //   const loadChats = async () => {
   //     const res = await fetch(`/msg/${props.username}`);
   //     const allChats = await res.json();
   //     setChats(allChats);
   //   };
-  //   const loadMatches = async () => {
-  //     const res = await fetch(`/users/matches/${props.username}`);
-  //     const matchList = await res.json();
-  //     setMatches(matchList);
-  //   };
+    const loadMatches = () => {
+      console.log('loadMatches called')
+    //   const res = await fetch(`/users/matches/${props.username}`);
+    //   const matchList = await res.json();
+    //   setMatches(matchList);
+    };
 
   return (
     <div>
-      <ProfileMessages chats={chats} username={props.username} />
+        <p>Matches</p>
+      {/* <ProfileMessages chats={chats} username={props.username} /> */}
+      {/* <ProfileMatches /> */}
     </div>
   );
 };
