@@ -46,6 +46,7 @@ class Login extends Component {
       })
       .catch(err => console.log('Login fetch /users/validateUser: ERROR: ', err));
     }
+  }
     
   render() {
     const inputState = this.state.input;
@@ -84,8 +85,8 @@ class Login extends Component {
         <span>New to StudyPal?</span>
         <Link to="/register">Join now</Link>
       </div>
-    );
-  }
+    )
+  };
 }
 
 
