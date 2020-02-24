@@ -40,6 +40,10 @@ module.exports = {
       '/users/*': {
         target: 'http://localhost:3000',
         secure: false
+      },
+      '/users': {
+        target: 'http://localhost:3000',
+        secure: false
       }
     },
 

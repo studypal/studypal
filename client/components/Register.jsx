@@ -89,28 +89,28 @@ const Register = props => {
           type="text"
           placeholder="First Name"
           value={firstname}
-          onChange={firstnameOnChange}
+          onChange={event => firstnameOnChange(event.target.value)}
         />
         <input
           className="text"
           type="text"
           placeholder="Last Name"
           value={lastname}
-          onChange={lastnameOnChange}
+          onChange={event => lastnameOnChange(event.target.value)}
         />
         <input
           className="text"
           type="text"
           placeholder="Username"
           value={username}
-          onChange={usernameOnChange}
+          onChange={event => usernameOnChange(event.target.value)}
         />
         <input
           className="text"
           type="password"
           placeholder="Password"
           value={password}
-          onChange={passwordOnChange}
+          onChange={event => passwordOnChange(event.target.value)}
         />
         <input
           className="text"

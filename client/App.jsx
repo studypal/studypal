@@ -39,7 +39,7 @@ class App extends Component {
               path="/register"
               render={() => <Register onRegisterSubmit={this.onRegisterSubmit} />}
             />
-            <Route exact path="/msg" component={Chat} />
+            <Route path="/chat" component={Chat} />
           </Switch>
         </main>
       </div>

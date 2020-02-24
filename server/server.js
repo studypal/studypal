@@ -6,12 +6,26 @@ const http = require('http');
 const app = express();
 const server = http.createServer(app);
 const io = socketio(server);
+const { addUser, removeUser, getUser, getUsersInRoom } = require('./users.js');
 
 const PORT = 3000;
 
-io.on('connection', sockets => {
+io.on('connection', socket => {
   console.log('New Connection!');
-  socketio.on('disconnect', () => {
+  socket.on('join', ({ username, room }, callback) => {
+    const { error, user } = addUser({ id: socket.id, username, room });
+    if (error) {
+      return callback(error);
+    }
+    socket.emit('message', { user: 'admin', text: `${user.username}, welcome to StudNet` });
+    socket.broadcast
+      .to(user.room)
+      .emit('message', { user: 'admin, text:`${user.username} has joined!' });
+    socket.join(user.room);
+
+    callback();
+  });
+  socket.on('disconnect', () => {
     console.log('user left the chat');
   });
 });
