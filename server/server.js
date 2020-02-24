@@ -9,6 +9,13 @@ const io = socketio(server);
 
 const PORT = 3000;
 
+io.on('connection', sockets => {
+  console.log('New Connection!');
+  socketio.on('disconnect', () => {
+    console.log('user left the chat');
+  });
+});
+
 app.use(express.json()); // needed to be able read the body
 
 //require routers here
