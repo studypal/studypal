@@ -62,6 +62,7 @@ const Register = props => {
         school,
         interests
       };
+      console.log('body', body);
       // fetch('/users/addUser', {
       //   method: 'POST',
       //   headers: { 'Content-Type': 'Application/JSON' },
@@ -69,7 +70,7 @@ const Register = props => {
       // })
       //   .then(resp => resp.json())
       //   .catch(err => console.log('Register fetch /users/addUser: ERROR: ', err));
-      history.push('/profile');
+      //history.push('/profile');
     }
   };
   //html component
