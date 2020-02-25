@@ -20,8 +20,21 @@ const Profile = props => {
   //     const allChats = await res.json();
   //     setChats(allChats);
   //   };
-    const loadMatches = async () => {
+    const loadMatches = () => {
         console.log('loadMatches called')
+
+        fetch(`/users/matches/${props.username}`)
+          .then(resp => resp.json())
+        //   .then((result) => { //user validation result
+        //     if(result) { //successful
+        //       this.props.onLoginSubmit(username); //send username info back + update state in App.jsx
+        //       this.setState({...this.state, verified: true}); //update state
+        //     }
+        //     else { //unsuccessful
+        //       this.setState({...this.state, input: 'invalid'});
+        //     }
+        //   })
+          .catch(err => console.log('Profile fetch /users/matches/username: ERROR: ', err));
     //   const res = await fetch(`/users/matches/${props.username}`);
     //   const matchList = await res.json();
     //   setMatches(matchList);
