@@ -7,7 +7,8 @@ class Login extends Component {
     this.state = {
       username: '',
       password: '',
-      input: 'valid' //used to display error messages below input box
+      input: 'valid', //used to display error messages below input box
+      verified: false
     };
     this.handleChange = this.handleChange.bind(this);
     this.userLogin = this.userLogin.bind(this);
@@ -23,7 +24,8 @@ class Login extends Component {
   userLogin() {
     const { username, password } = this.state;
 
-    if (username == '' || password == '') this.setState({ ...this.state, input: 'empty' });
+    if(username == '' || password == '')
+      this.setState({...this.state, input: 'empty'});
     else {
       //backend call to check if username + password is valid
       const body = { username, password };
@@ -33,21 +35,21 @@ class Login extends Component {
         headers: { 'Content-Type': 'Application/JSON' },
         body: JSON.stringify(body)
       })
-        .then(resp => resp.json())
-        .then(result => {
-          //user validation result
-          if (result) {
-            //successful
-            this.props.history.push('/profile'); //redirect
-          } else {
-            //unsuccessful
-            this.setState({ ...this.state, input: 'invalid' });
-          }
-        })
-        .catch(err => console.log('Login fetch /users/validateUser: ERROR: ', err));
+      .then(resp => resp.json())
+      .then((result) => { //user validation result
+        if(result) { //successful
+          this.props.onLoginSubmit(username); //send username info back + update state in App.jsx
+          this.setState({...this.state, verified: true}); //update state
+        }
+        else { //unsuccessful
+          this.setState({...this.state, input: 'invalid'});
+        }
+      })
+      .catch(err => console.log('Login fetch /users/validateUser: ERROR: ', err));
     }
+    
   }
-
+  
   render() {
     const inputState = this.state.input;
 
@@ -58,6 +60,11 @@ class Login extends Component {
       else return <div className="login-invalid-msg">Please enter username and password</div>;
     };
 
+    //redirect to /profile page if verified
+    if(this.state.verified) {
+      return <Redirect to={`/profile/${this.state.username}`}/>
+    }
+    //else
     return (
       <div className="login-register-input">
         <h1>StudyPal</h1>
