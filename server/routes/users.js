@@ -17,9 +17,9 @@ usersRouter.post('/addUser', usersController.addUser, (req, res, next) => {
 })
 
 //called at /profile to find matched users
-usersRouter.get('/profile', usersController.matchUsers, (req, res, next) => {
-    console.log('usersRouter.get');
-    return res.status(200).json(res.locals.match);
+usersRouter.get('/matches/:username', usersController.matchUsers, (req, res, next) => {
+    console.log('usersRouter.get for matches/username called');
+    return res.status(200).json({}/*res.locals.match*/);
 })
 
 

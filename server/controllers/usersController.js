@@ -32,20 +32,45 @@ usersController.validateUser = (req,res,next) => {
 usersController.matchUsers = async (req, res, next) => {
     console.log('userController.matchUsers');
     try {
-        
-      //query
-      const q = 'SELECT users.username, interests.interest_name, schools.name as school, users._id as user_id ' +
-      'FROM users LEFT OUTER JOIN interests ON interests.user_id = users._id LEFT OUTER JOIN schools ' +
-      'on schools.user_id = users._id WHERE NOT users._id = $1 AND ' +
-      'interests.interest_name = $2 AND schools.name = $3 LIMIT 6';
-      const values = ['1', 'math', 'UCLA']; //HARDCODED FOR NOW
+      const {
+        username
+      } = req.params
+      //query to get user id
+      const l = "SELECT users._id FROM users WHERE users.username = $1";
+      const nameMatch = [username];
+      const awaitNameMatch = await db.query(l, nameMatch);
+      const userId = awaitNameMatch.rows[0]._id;
+      //query to get school name of the user
+      const l2 = "SELECT schools.name FROM schools WHERE schools.user_id = $1";
+      const userMatch = [userId];
+      const awaitNameMatch2 = await db.query(l2, userMatch);
+      const schoolName = awaitNameMatch2.rows[0].name;
+      //query to get interests name
+      const l3 = "SELECT interests.interest_name FROM interests WHERE interests.user_id = $1";
+      const awaitInterestMatch = await db.query(l3, userMatch);
+      //loop through the result and save each interest in arr
+      const interestArr = [];
+      for (let i = 0; i < awaitInterestMatch.rows.length; i++) {
+        interestArr.push(awaitInterestMatch.rows[i].interest_name);
+      }
+  
+      //final query to get matching users
+      const matches = [];
+      for (let i = 0; i < interestArr.length; i++) {
+        const q = 'SELECT users.username, interests.interest_name, schools.name as school, users._id as user_id ' +
+        'FROM users LEFT OUTER JOIN interests ON interests.user_id = users._id LEFT OUTER JOIN schools ' +
+        'on schools.user_id = users._id WHERE NOT users._id = $1 AND ' +
+        'interests.interest_name = $2 AND schools.name = $3 LIMIT 6';
+        const values = [userId, interestArr[i], schoolName];
+        const matchedUser = await db.query(q, values);
+        console.log('matched user>>>>> ', matchedUser)
+        matches.push(matchedUser.rows)
 
-      db.query(q, values)
-      .then((data) => {
-        console.log(data);
-        res.locals.match = data.rows;
+      }
+
+        res.locals.match = matches;
+        console.log('res.locasl.match >>>>> ', res.locals.match)
         return next();
-      })
     }
     catch (err) {
       return next({
