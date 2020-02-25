@@ -20,8 +20,8 @@ const Profile = props => {
   //     const allChats = await res.json();
   //     setChats(allChats);
   //   };
-    const loadMatches = () => {
-      console.log('loadMatches called')
+    const loadMatches = async () => {
+        console.log('loadMatches called')
     //   const res = await fetch(`/users/matches/${props.username}`);
     //   const matchList = await res.json();
     //   setMatches(matchList);
@@ -29,8 +29,7 @@ const Profile = props => {
 
   return (
     <div>
-        <p>Matches</p>
-      {/* <ProfileMessages chats={chats} username={props.username} /> */}
+      <ProfileMessages chats={chats} username={props.username} />
       {/* <ProfileMatches /> */}
     </div>
   );
