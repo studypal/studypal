@@ -1,6 +1,6 @@
-import React, { Component } from "react";
-import { Link, Redirect } from "react-router-dom";
-
+import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
+import '../stylesheets/login.css';
 class Login extends Component {
   constructor(props) {
     super(props);
@@ -19,7 +19,7 @@ class Login extends Component {
       [evt.target.name]: evt.target.value
     });
   }
-  
+
   //invoked upon login button click
   userLogin() {
     const { username, password } = this.state;
@@ -28,11 +28,11 @@ class Login extends Component {
       this.setState({...this.state, input: 'empty'});
     else {
       //backend call to check if username + password is valid
-      const body = {username, password};
+      const body = { username, password };
 
       fetch('/users/validateUser', {
         method: 'POST',
-        headers: { "Content-Type": "Application/JSON" },
+        headers: { 'Content-Type': 'Application/JSON' },
         body: JSON.stringify(body)
       })
       .then(resp => resp.json())
@@ -54,13 +54,11 @@ class Login extends Component {
     const inputState = this.state.input;
 
     const message = () => {
-      if (inputState == 'valid') 
-        return <div></div>;
-      else if (inputState == 'invalid') 
+      if (inputState == 'valid') return <div></div>;
+      else if (inputState == 'invalid')
         return <div className="login-invalid-msg">Invalid username and/or password</div>;
-      else
-        return <div className="login-invalid-msg">Please enter username and password</div>;
-    }
+      else return <div className="login-invalid-msg">Please enter username and password</div>;
+    };
 
     //redirect to /profile page if verified
     if(this.state.verified) {
@@ -86,7 +84,9 @@ class Login extends Component {
           placeholder="Password"
         />
         {message()}
-        <button type="button" className="btnSubmit" onClick={() => this.userLogin()}>Log In</button>
+        <button type="button" className="btnSubmit" onClick={() => this.userLogin()}>
+          Log In
+        </button>
         <a href="">Forgot password?</a>
         <br />
         <span>New to StudyPal?</span>
@@ -95,23 +95,5 @@ class Login extends Component {
     );
   }
 }
-
-// function Login(props) {
-//   return (
-//     <div className="login-register-input">
-//       <h1>StudyPal</h1>
-//       <p className="welcome">Welcome back!</p>
-//       <form action="">
-//         <input className="text" type="text" placeholder="Username" />
-//         <input className="text" type="password" placeholder="Password" />
-//         <input className="button" type="submit" value="Submit" />
-//       </form>
-//       <a href="">Forgot password?</a>
-//       <br />
-//       <span>New to StudyPal?</span>
-//       <Link to="/register">Join now</Link>
-//     </div>
-//   );
-// }
 
 export default Login;

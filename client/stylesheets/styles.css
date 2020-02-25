@@ -10,7 +10,6 @@
 
 .btnSubmit {
   display: block;
-
 }
 
 .welcome {
@@ -49,13 +48,13 @@ span {
   display: inline-block;
 }
 
-.messageBox {
+/* .messageBox {
   width: 200px;
   height: 100px;
   background-color: lightpink;
   border: black 1px solid;
   display: inline-block;
-}
+} */
 
 .center {
   margin-left: 30px;
